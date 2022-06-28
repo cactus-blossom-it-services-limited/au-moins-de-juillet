@@ -21,9 +21,8 @@
 # your configuration and whether it's working correctly.
 
 environment_variables:
-  project_id: yourproject
+  project_id: jbbkfodhaxh66 
   environment: main
-  application: drupal
 
 auth_command:
   command: |
@@ -35,14 +34,14 @@ db_pull_command:
     set -x   # You can enable bash debugging output by uncommenting
     set -eu -o pipefail
     ls /var/www/html/.ddev >/dev/null # This just refreshes stale NFS if possible
-    platform db:dump --yes --gzip --file=/var/www/html/.ddev/.downloads/db.sql.gz --project="${project_id}" --environment="${environment}" --app="${application}"
+    platform db:dump --yes --gzip --file=/var/www/html/.ddev/.downloads/db.sql.gz --project="${project_id}" --environment="${environment}"
 
 files_pull_command:
   command: |
     set -x   # You can enable bash debugging output by uncommenting
     set -eu -o pipefail
     ls /var/www/html/.ddev >/dev/null # This just refreshes stale NFS if possible
-    platform mount:download --yes --quiet --project="${project_id}" --environment="${environment}" --app="${application}" --mount=web/sites/default/files --target=/var/www/html/.ddev/.downloads/files
+    platform mount:download --yes --quiet --project="${project_id}" --environment="${environment}" --mount=web/sites/default/files --target=/var/www/html/.ddev/.downloads/files
 
 
 # push is a dangerous command. If not absolutely needed it's better to delete these lines.
