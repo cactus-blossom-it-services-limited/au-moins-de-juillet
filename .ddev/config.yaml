@@ -1,4 +1,4 @@
-name: api
+name: au-moins-de-juillet
 type: drupal9
 docroot: web
 php_version: "8.0"
@@ -75,7 +75,7 @@ nodejs_version: "16"
 # After first project 'ddev start' this will not be updated until it changes
 
 # nodejs_version: "16"
-# change from the default system Node.js version to another supported version, like 12, 14, 17.
+# change from the default system Node.js version to another supported version, like 12, 14, 17, 18.
 # Note that you can use 'ddev nvm' or nvm inside the web container to provide nearly any
 # Node.js version, including v6, etc.
 
@@ -169,7 +169,7 @@ nodejs_version: "16"
 # If you prefer you can change this to "ddev.local" to preserve
 # pre-v1.9 behavior.
 
-# ngrok_args: --subdomain mysite --auth username:pass
+# ngrok_args: --basic-auth username:pass1234
 # Provide extra flags to the "ngrok http" command, see
 # https://ngrok.com/docs#http or run "ngrok http -h"
 
