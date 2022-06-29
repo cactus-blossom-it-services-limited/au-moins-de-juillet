@@ -5,3 +5,11 @@ amdj_message.message:
     _title: 'Au Moins De Juillet'
   requirements:
     _permission: 'access content'
+
+amdj_message.greeting_form:
+  path: '/admin/config/greeting-configuration'
+  defaults:
+    _form: Drupal\amdj_message\Form\GreetingConfigurationForm
+    _title: 'Greeting configuration'
+  requirements:
+    _permission: 'administer site configuration'
