@@ -1,0 +1,7 @@
+amdj_message.message:
+  path: '/message'
+  defaults:
+    _controller: Drupal\amdj_message\Controller\AmdjMessageController::amdjMessage
+    _title: 'Au Moins De Juillet'
+  requirements:
+    _permission: 'access content'

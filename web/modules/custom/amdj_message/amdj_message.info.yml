@@ -1,0 +1,5 @@
+name: Amdj Message
+description: Displays a message
+type: module
+core_version_requirement: ^9
+package: Au Moins de juillet
