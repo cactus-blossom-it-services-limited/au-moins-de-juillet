@@ -1,3 +1,4 @@
 services:
   amdj_message.greeting:
     class: Drupal\amdj_message\AmdjMessageGreeting
+    arguments: ['@config.factory']
