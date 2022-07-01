@@ -32,7 +32,32 @@ class AmdjMessagePageTest extends BrowserTestBase
     $config->save();
     $this->drupalGet('/message');
     $this->assertSession()->pageTextNotContains($expected);
-    $expected = 'Testing message';
+    $expected = 'Au Moins De Juillet';
     $this->assertSession()->pageTextContains($expected);
+  }
+
+  /**
+   * Helper function to assert that the default salutation is present on the page.
+   *
+   * Returns the message so we can reuse it in multiple places.
+   */
+  protected function assertDefaultGreeting() {
+    $this->drupalGet('/message');
+    $this->assertSession()->pageTextContains('Au Moins De Juillet');
+    $time = new \DateTime();
+    $expected = '';
+    if ((int) $time->format('G') >= 00 && (int) $time->format('G') < 12) {
+      $expected = 'Good morning';
+    }
+    if ((int) $time->format('G') >= 12 && (int) $time->format('G') < 18) {
+      $expected = 'Good afternoon';
+    }
+
+    if ((int) $time->format('G') >= 18) {
+      $expected = "Good evening";
+    }
+    $expected .= ' world';
+    $this->assertSession()->pageTextContains($expected);
+    return $expected;
   }
 }

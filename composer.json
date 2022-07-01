@@ -34,7 +34,8 @@
       "composer/installers": true,
       "drupal/core-composer-scaffold": true,
       "drupal/core-project-message": true,
-      "cweagans/composer-patches": true
+      "cweagans/composer-patches": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
   "extra": {
@@ -95,6 +96,8 @@
     }
   },
   "require-dev": {
-    "drupal/devel": "^4.1"
+    "drupal/core-dev": "^9.4",
+    "drupal/devel": "^4.1",
+    "phpspec/prophecy-phpunit": "^2"
   }
 }

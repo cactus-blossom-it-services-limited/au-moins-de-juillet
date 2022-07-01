@@ -41,14 +41,14 @@ class AmdjMessageGreeting
     $time = new \DateTime();
     if ((int)$time->format('G') >= 00
       && (int)$time->format('G') < 12) {
-      return $this->t('Bonjour tout le monde');
+      return $this->t('Good morning world');
     }
     if ((int)$time->format('G') >= 12
       && (int)$time->format('G') < 18) {
-      return $this->t("C'est l'après-midi. Bonjour.");
+      return $this->t("Good afternoon world");
     }
     if ((int)$time->format('G') >= 18) {
-      return $this->t('Bonsoir tout le monde.');
+      return $this->t('Good evening world');
     }
   }
 
