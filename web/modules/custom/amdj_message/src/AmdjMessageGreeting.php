@@ -29,7 +29,7 @@ class AmdjMessageGreeting
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    * @param \Drupal\Core\PageCache\ResponsePolicyInterface $kill_switch
    */
-  public function __construct(ConfigFactoryInterface $config_factory, ResponsePolicyInterface $kill_switch)
+  public function __construct(ConfigFactoryInterface $config_factory, KillSwitch $kill_switch)
   {
     $this->configFactory = $config_factory;
     $this->killSwitch = $kill_switch;

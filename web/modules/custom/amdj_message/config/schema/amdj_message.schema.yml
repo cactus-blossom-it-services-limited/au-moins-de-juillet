@@ -1,0 +1,7 @@
+amdj_message.custom_greeting:
+  type: config_object
+  label: 'Greeting settings'
+  mapping:
+    greeting:
+      type: string
+      label: 'The greeting'
