@@ -73,10 +73,8 @@ hooks:
     # The build hook runs after Composer to finish preparing up your code.
     # No services are available but the disk is writeable.
     build: |
-       set -e
-		   vendor/bin/phpunit ./web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php
-
-The output of the test runner will be available in the build log.
+        set -e
+        vendor/bin/phpunit ./web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php
     # The deploy hook runs after your application has been deployed and started.
     # Code cannot be modified at this point but the database is available.
     # The site is not accepting requests while this script runs so keep it
