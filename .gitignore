@@ -30,3 +30,6 @@ private
 .drush
 drush-backups
 .console
+
+# Ignore Platform.sh database dumps
+*--dump.sql

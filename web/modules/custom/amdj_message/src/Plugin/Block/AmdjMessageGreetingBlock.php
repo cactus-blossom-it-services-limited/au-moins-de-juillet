@@ -2,6 +2,7 @@
 
 namespace Drupal\amdj_message\Plugin\Block;
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Block\BlockBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -43,9 +44,41 @@ class AmdjMessageGreetingBlock extends BlockBase implements ContainerFactoryPlug
       ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+  /**
+   * {@inheritdoc}
+   */
+  public function defaultConfiguration()
+  {
+    return [
+      'enabled' => 1,
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockForm($form, FormStateInterface $form_state)
+  {
+    $config = $this->getConfiguration();
+    $form['enabled'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enabled'),
+      '#description' => $this->t('Check this box if you want to enable this feature.'),
+      '#default_value' => $config['enabled'],
+    );
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    $this->configuration['enabled'] = $form_state->getValue('enabled');
+  }
+
+  /**
+   * {@inheritDoc}
+   */
     public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
     {
       return new static(
