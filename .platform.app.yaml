@@ -73,13 +73,8 @@ hooks:
     # The build hook runs after Composer to finish preparing up your code.
     # No services are available but the disk is writeable.
     build: |
-        set -e
-				# Run PHPUnit tests
-				vendor/bin/phpunit web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php
-				# If the test command fails a test it will return a non-0 error code
-				# to the shell. The set -e flag means that error will cause the whole
-				# build process to fail and the container will not be deployed. If no
-				# tests fail then the test command will return 0, allowing the build to proceed.
+       set -e
+		   vendor/bin/phpunit ./web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php
 
 The output of the test runner will be available in the build log.
     # The deploy hook runs after your application has been deployed and started.
