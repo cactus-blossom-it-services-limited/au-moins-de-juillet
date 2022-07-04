@@ -2,3 +2,8 @@ services:
   amdj_message.greeting:
     class: Drupal\amdj_message\AmdjMessageGreeting
     arguments: ['@config.factory', '@page_cache_kill_switch']
+  amdj_message.redirect_subscriber:
+    class: \Drupal\amdj_message\EventSubscriber\AmdjMessageRedirectSubscriber
+    arguments: ['@current_user']
+    tags:
+      - { name: event_subscriber }
