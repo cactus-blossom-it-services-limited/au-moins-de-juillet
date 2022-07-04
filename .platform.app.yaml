@@ -74,6 +74,7 @@ hooks:
     # No services are available but the disk is writeable.
     build: |
         set -e
+        vendor/bin/phpunit ./web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php
     # The deploy hook runs after your application has been deployed and started.
     # Code cannot be modified at this point but the database is available.
     # The site is not accepting requests while this script runs so keep it
@@ -153,4 +154,4 @@ source:
     auto-update:
       command: |
         curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0
-    
+
