@@ -1,9 +1,9 @@
 name: test
 on:
   push:
-    branches: [ dev ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ dev ]
+    branches: [ main, dev ]
 
 jobs:
   testing:
@@ -14,36 +14,38 @@ jobs:
       matrix:
         drupal-core: ['9.3.x']
         php-versions: ['8.0']
+    steps:
+      - name: Checkout Drupal core
+        uses: actions/checkout@v2
+        with:
+          repository: drupal/drupal
+          ref: ${{ matrix.drupal-core }}
 
-steps:
-  - name: Checkout Drupal core
-    uses: actions/checkout@v2
-    with:
-      repository: drupal/drupal
-      ref: ${{ matrix.drupal-core }}
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: none
 
-- name: Setup PHP, with composer and extensions
-    uses: shivammathur/setup-php@v2
-    with:
-      php-version: ${{ matrix.php-versions }}
-      coverage: none
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
- - name: Get composer cache directory
-    id: composercache
-    run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
- - name: Cache composer dependencies
-    uses: actions/cache@v2
-    with:
-      path: ${{ steps.composercache.outputs.dir }}
-      key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-      restore-keys: ${{ runner.os }}-composer-
+      - name: Install Drupal core dependencies
+        run: composer --no-interaction --no-progress --prefer-dist --optimize-autoloader install
 
- - name: Install Drupal core dependencies
-    run: |
-      composer --no-interaction --no-progress --prefer-dist --optimize-autoloader install
+      - name: Install Coder module
+        run: composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true;
+        composer --dev --no-interaction --no-progress require \
+          drupal/coder:8.3.15
 
- - name: Install Coder module
-    run: |
-      composer --dev --no-interaction --no-progress require \
-        drupal/coder:8.3.15
+      - name: Check coding standards
+        run: ./vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
+             ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/custom/amdj_message
