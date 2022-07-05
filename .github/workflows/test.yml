@@ -1,9 +1,9 @@
 name: test
 on:
   push:
-    branches: [ dev ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ dev ]
+    branches: [ main, dev ]
 
 jobs:
   testing:
@@ -42,7 +42,8 @@ jobs:
         run: composer --no-interaction --no-progress --prefer-dist --optimize-autoloader install
 
       - name: Install Coder module
-        run: composer --dev --no-interaction --no-progress require \
+        run: composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true;
+        composer --dev --no-interaction --no-progress require \
           drupal/coder:8.3.15
 
       - name: Check coding standards
