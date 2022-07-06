@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        drupal-core: ['9.3.x', '9.4.x']
-        php-versions: ['7.4', 8.0']
+        drupal-core: ['9.3.x']
+        php-versions: ['8.0']
     steps:
       - name: Checkout Drupal core
         uses: actions/checkout@v2
