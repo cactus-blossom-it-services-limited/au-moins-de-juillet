@@ -50,8 +50,9 @@ jobs:
              ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/custom/amdj_message
 
       - name: Setup Drupal 9 action
-        uses: cactus-blossom-it-services-limited/setup-drupal@v1.0.5
+        uses: cactus-blossom-it-services-limited/setup-drupal@v1.0.7
         with:
           version: '9.3.x'
+          path: ~/web
           #dependencies: 'drupal/token drupal/ctools'
 
