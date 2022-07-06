@@ -42,10 +42,15 @@ jobs:
         run: composer --no-interaction --no-progress --prefer-dist --optimize-autoloader install
 
       - name: Install Coder module
-        run: composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true;
-        composer --dev --no-interaction --no-progress require \
-          drupal/coder:8.3.15
+        run: composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true &&
+             composer --dev --no-interaction --no-progress require drupal/coder:8.3.15
 
       - name: Check coding standards
         run: ./vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
              ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/custom/amdj_message
+
+      - name: Setup Drupal
+        uses:  cactus-blossom-it-services-limited/setup-drupal
+        with:
+          version: '9.3.x'
+          #dependencies: 'drupal/token drupal/ctools'
