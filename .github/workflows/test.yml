@@ -46,8 +46,8 @@ jobs:
              composer --dev --no-interaction --no-progress require drupal/coder:8.3.15
 
       - name: Check coding standards
-        run: ../../vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
-             ../../vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/custom/amdj_message
+        run: ./vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
+             ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/custom/amdj_message
 
 #       - name: Setup Drupal
 #         uses: bluehorndigital/setup-drupal@v1.0.3
