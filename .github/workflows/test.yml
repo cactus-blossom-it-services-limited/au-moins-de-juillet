@@ -53,6 +53,5 @@ jobs:
         uses: cactus-blossom-it-services-limited/setup-drupal@v1.0.7
         with:
           version: '9.3.x'
-          path: ~/web
           #dependencies: 'drupal/token drupal/ctools'
 
