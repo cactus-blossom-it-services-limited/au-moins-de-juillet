@@ -44,7 +44,7 @@ jobs:
       - name: Install Coder module
         run: |
           composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-          composer --dev --no-interaction --no-progress require drupal/coder:8.3.15
+          composer --dev --no-interaction --no-progress require drupal/coder:8.3.13
 
       - name: Check coding standards
         run: ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js web/modules/custom/amdj_message
