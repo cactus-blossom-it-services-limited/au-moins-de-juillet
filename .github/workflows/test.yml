@@ -47,7 +47,9 @@ jobs:
           composer --dev --no-interaction --no-progress require drupal/coder:8.3.13
 
       - name: Check coding standards
-        run: ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js web/modules/custom/amdj_message
+        run: |
+          ./vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer,vendor/sirbrillig/phpcs-variable-analysis,vendor/slevomat/coding-standard
+          ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js web/modules/custom/amdj_message
 
       - name: Setup Drupal
         uses: cactus-blossom-it-services-limited/setup-drupal@v1.0.2
