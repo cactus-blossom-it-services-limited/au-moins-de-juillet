@@ -50,7 +50,7 @@ jobs:
              ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/custom/amdj_message
 
       - name: Setup Drupal
-        uses: bluehorndigital/setup-drupal@v1
+        uses: bluehorndigital/setup-drupal@v1.0.3
         with:
           version: '9.3.x'
           #dependencies: 'drupal/token drupal/ctools'
