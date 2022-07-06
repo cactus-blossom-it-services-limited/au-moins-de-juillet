@@ -49,8 +49,8 @@ jobs:
         run: ./vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
              ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/custom/amdj_message
 
-      - name: Setup Drupal 9 action
-        uses: cactus-blossom-it-services-limited/setup-drupal@v1.0.7
+      - name: "Setup Drupal"
+        uses: cactus-blossom-it-services-limited/setup-drupal-9-action@v1.0.7
         with:
           version: '9.3.x'
           #dependencies: 'drupal/token drupal/ctools'
