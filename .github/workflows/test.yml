@@ -49,11 +49,11 @@ jobs:
         run: ./vendor/bin/phpcs --config-set installed_paths vendor/drupal/coder/coder_sniffer
              ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js modules/custom/amdj_message
 
-      - name: PHPUnit tests
-        uses: php-actions/phpunit@v3
+      - name: Setup PHPUnit tests
+        uses: php-actions/phpunit@v9
         with:
           #version: 9.5.21 # you must specify the major version used in composer.json
           configuration: test/phpunit/phpunit.xml # This is the default
+
+      - name: Run PHPUnit tests
         run: ./vendor/bin/phpunit web/modules/custom/amdj_message/tests/src/Functional/SkeletonTest.php
-
-
