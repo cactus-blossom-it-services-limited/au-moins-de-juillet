@@ -16,39 +16,37 @@ use Drupal\amdj_message\AmdjMessageGreeting;
  *   admin_label = @Translation("Amdj greeting"),
  *   )
  */
+class AmdjMessageGreetingBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
-class AmdjMessageGreetingBlock extends BlockBase implements ContainerFactoryPluginInterface
-{
   /**
    * The Amdj service.
    *
    * @var \Drupal\amdj_message\AmdjMessageGreeting
    */
+
   protected $salutation;
+
   /**
    * Constructs a AmdjMessageGreetingBlock.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, AmdjMessageGreeting $greeting)
-  {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, AmdjMessageGreeting $greeting) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-      $this->greeting = $greeting;
+    $this->greeting = $greeting;
   }
 
   /**
-     * {@inheritDoc}
-     */
-    public function build()
-    {
-      return [
-        '#markup' => $this->greeting->getGreeting(),
-      ];
-    }
+   * {@inheritDoc}
+   */
+  public function build() {
+    return [
+      '#markup' => $this->greeting->getGreeting(),
+    ];
+  }
 
   /**
    * {@inheritdoc}
    */
-  public function defaultConfiguration()
-  {
+  public function defaultConfiguration() {
     return [
       'enabled' => 1,
     ];
@@ -57,15 +55,14 @@ class AmdjMessageGreetingBlock extends BlockBase implements ContainerFactoryPlug
   /**
    * {@inheritdoc}
    */
-  public function blockForm($form, FormStateInterface $form_state)
-  {
+  public function blockForm($form, FormStateInterface $form_state) {
     $config = $this->getConfiguration();
-    $form['enabled'] = array(
+    $form['enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enabled'),
       '#description' => $this->t('Check this box if you want to enable this feature.'),
       '#default_value' => $config['enabled'],
-    );
+    ];
     return $form;
   }
 
@@ -79,13 +76,13 @@ class AmdjMessageGreetingBlock extends BlockBase implements ContainerFactoryPlug
   /**
    * {@inheritDoc}
    */
-    public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
-    {
-      return new static(
-        $configuration,
-        $plugin_id,
-        $plugin_definition,
-        $container->get('amdj_message.greeting')
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('amdj_message.greeting')
       );
-    }
+  }
+
 }
