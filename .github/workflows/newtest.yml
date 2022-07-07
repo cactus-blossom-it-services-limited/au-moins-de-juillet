@@ -1,0 +1,14 @@
+name: newtest
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: jonaseberle/github-action-setup-ddev@v1
+      # example: composer install
+      - run: ddev composer install
+      # example: fill database
+      - run: ddev mysql < db-dumps/db.sql
+      # ... and so on.
