@@ -12,4 +12,4 @@ jobs:
       # example: fill database
       - run: ddev mysql < db-dumps/db.sql
       # ... and so on.
-			- run: ddev exec `./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js web/modules/custom/amdj_message`
+      - run: ddev exec `./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js web/modules/custom/amdj_message`
