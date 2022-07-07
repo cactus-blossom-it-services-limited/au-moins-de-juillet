@@ -18,6 +18,7 @@ function amdj_message_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<h3>' . t('About') . '</h3>';
       $output .= '<p>' . t('This is a custom module that outputs a message.') . '</p>';
       return $output;
+
     default:
   }
 }
