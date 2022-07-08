@@ -14,7 +14,7 @@ jobs:
       # Test running a PHPUnit test inside ddev container
       - run: mkdir -p web/sites/simpletest/browser_output
       - run: chmod a+w web/sites/simpletest/browser_output
-      - run: ls -ll web/sites
+      - run: ddev describe
       - run: ddev exec `./vendor/bin/phpunit web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php`
       - run: ddev exec `./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js web/modules/custom/amdj_message`
       # ... and so on.
