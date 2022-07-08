@@ -2,7 +2,7 @@ name: newtest
 on: [push, pull_request]
 
 jobs:
-  test:
+  newtest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
