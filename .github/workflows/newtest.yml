@@ -15,7 +15,7 @@ jobs:
       - run: mkdir -p web/sites/simpletest/browser_output
       - run: chmod a+w web/sites/simpletest/browser_output
       - run: ddev ssh
-      - run: SIMPLETEST_DB='mysql://db:db@db/db' SIMPLETEST_BASE_URL='https://au-moins-de-juillet.ddev.site:8443' ./vendor/bin/phpunit -c web/core/ web/core/modules/action
+      - run: SIMPLETEST_DB="mysql://db:db@db/db:3306" SIMPLETEST_BASE_URL='https://au-moins-de-juillet.ddev.site:8443' ./vendor/bin/phpunit -c web/core/ web/core/modules/action
 #       - run: SIMPLETEST_DB='mysql://db:db@db/db' SIMPLETEST_BASE_URL='https://au-moins-de-juillet.ddev.site:8443' ./vendor/bin/phpunit web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php
       - run: ./vendor/bin/phpcs --standard=Drupal,DrupalPractice --extensions=php,module,install,js web/modules/custom/amdj_message
       # ... and so on.
