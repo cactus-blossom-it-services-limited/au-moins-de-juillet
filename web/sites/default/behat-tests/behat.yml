@@ -1,0 +1,27 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+    "Behat\\MinkExtension":
+      goutte: null
+      base_url: http://au-moins-de-juillet.ddev.site:8000
+      javascript_session: selenium2
+      selenium2: ~
+      browser: "chrome"
+      wd_host: http://selenium:4444/wd/hub
+      capabilities:
+        extra_capabilities:
+          idle_timeout: 50
+    Drupal\MinkExtension:
+      goutte: ~ 
+      selenium2: ~
+      base_url: http://au-moins-de-juillet.ddev.site:8000
+    Drupal\DrupalExtension:
+      blackbox: ~
+
