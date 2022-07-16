@@ -9,8 +9,7 @@ use Drupal\Tests\BrowserTestBase;
  *
  * @group amdj_message
  */
-class AmdjMessagePageTest extends BrowserTestBase
-{
+class AmdjMessagePageTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
@@ -28,7 +27,6 @@ class AmdjMessagePageTest extends BrowserTestBase
    */
   protected $webUser;
 
-
   /**
    * Tests the main Amdj page.
    */
@@ -36,14 +34,12 @@ class AmdjMessagePageTest extends BrowserTestBase
     // Verify that not logged in user cannot access message page.
     $this->drupalGet('/message');
     $this->assertSession()->statusCodeEquals(403);
-
     // Create a user with permissions to access 'simple' page and login.
     $this->webUser = $this->drupalCreateUser(['access content']);
     $this->drupalLogin($this->webUser);
     // Verify that user can access simple content.
     $this->drupalGet('/message');
     $this->assertSession()->statusCodeEquals(200);
-
     $expected = $this->assertDefaultGreeting();
     $config = $this->config('amdj_message.custom_greeting');
     $config->set('greeting', 'Testing greeting');
@@ -55,7 +51,7 @@ class AmdjMessagePageTest extends BrowserTestBase
   }
 
   /**
-   * Helper function to assert that the default salutation is present on the page.
+   * Helper function to assert that default salutation is present on page.
    *
    * Returns the message so we can reuse it in multiple places.
    */
@@ -78,4 +74,5 @@ class AmdjMessagePageTest extends BrowserTestBase
     $this->assertSession()->pageTextContains($expected);
     return $expected;
   }
+
 }
