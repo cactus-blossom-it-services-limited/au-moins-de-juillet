@@ -75,7 +75,7 @@ hooks:
     build: |
         set -e
         echo $PLATFORM_APPLICATION_NAME
-        echo d8settings:database
+        echo "$PLATFORM_VARIABLES" | base64 --decode
         mkdir -p ./web/sites/simpletest/browser_output
         chmod a+w web/sites/simpletest/browser_output
         vendor/bin/phpunit ./web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php
