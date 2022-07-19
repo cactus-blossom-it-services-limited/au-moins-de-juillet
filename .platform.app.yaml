@@ -73,6 +73,8 @@ hooks:
     # The build hook runs after Composer to finish preparing up your code.
     # No services are available but the disk is writeable.
     build: |
+        mkdir -p ./web/sites/simpletest/browser_output
+        chmod a+w web/sites/simpletest/browser_output
         set -e
         vendor/bin/phpunit ./web/modules/custom/amdj_message/tests/src/Functional/AmdjMessagePageTest.php
     # The deploy hook runs after your application has been deployed and started.

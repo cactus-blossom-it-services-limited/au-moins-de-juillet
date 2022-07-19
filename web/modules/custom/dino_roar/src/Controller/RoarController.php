@@ -25,5 +25,5 @@ class RoarController extends ControllerBase {
   public function __construct(RoarGenerator $roarGenerator) {
     $this->roarGenerator = $roarGenerator;
   }
-  
+
 }
