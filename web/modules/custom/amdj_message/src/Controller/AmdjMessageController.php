@@ -42,8 +42,6 @@ class AmdjMessageController extends ControllerBase
    *   The message.
    */
   public function amdjMessage() {
-    return [
-      '#markup' => $this->greeting->getGreeting(),
-    ];
+    return $this->greeting->getGreetingComponent();
   }
 }

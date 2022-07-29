@@ -5,6 +5,7 @@
  * Amdj Message module file.
  */
 
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -21,4 +22,77 @@ function amdj_message_help($route_name, RouteMatchInterface $route_match) {
 
     default:
   }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function amdj_message_token_info() {
+  $type = [
+    'name' => t('Amdj Greeting'),
+    'description' => t('The Amdj greeting value.'),
+  ];
+
+  $tokens['greeting'] = [
+    'name' => t('Greeting'),
+    'descriptions' => t('The Amdj Message greeting value.'),
+  ];
+
+  return [
+    'types' => ['amdj_message' => $type],
+    'tokens' => ['amdj_message' => $tokens],
+  ];
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function amdj_message_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+  $replacements = [];
+  if ($type == 'amdj_message') {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'greeting':
+          $replacements[$original] = \Drupal::service('amdj_message.greeting')->getGreeting();
+          $config = \Drupal::config('amdj_message.custom_greeting');
+          $bubbleable_metadata->addCacheableDependency($config);
+          break;
+      }
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function amdj_message_theme($existing, $type, $theme, $path) {
+  return [
+    'amdj_message_greeting' => [
+      'variables' => [
+        'greeting' => NULL,
+        'target' => NULL,
+        'overriden' => FALSE,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Default preprocessor function for the amdj_message_greeting theme hook.
+ */
+function template_preprocess_amdj_message_greeting(&$variables) {
+  $variables['attributes'] = [
+    'class' => ['greeting'],
+  ];
+}
+
+function amdj_message_theme_suggestions_amdj_message_greeting($variables) {
+  $suggestions = [];
+
+  if ($variables['overriden'] === TRUE) {
+    $suggestions[] = 'amdj_message_greeting__overriden';
+  }
+
+  return $suggestions;
 }
