@@ -7,3 +7,10 @@ services:
     arguments: ['@current_user', '@current_route_match']
     tags:
       - { name: event_subscriber }
+  amdj_message.logger.channel.amdj_message:
+    parent: logger.channel_base
+    arguments: ['amdj_message']
+  amdj_message.logger.mail_logger:
+    class: Drupal\amdj_message\Logger\MailLogger
+    tags:
+      - { name: logger }
