@@ -12,5 +12,6 @@ services:
     arguments: ['amdj_message']
   amdj_message.logger.mail_logger:
     class: Drupal\amdj_message\Logger\MailLogger
+    arguments: ['@logger.log_message_parser', '@config.factory']
     tags:
       - { name: logger }
