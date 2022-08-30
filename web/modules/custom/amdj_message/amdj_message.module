@@ -96,3 +96,16 @@ function amdj_message_theme_suggestions_amdj_message_greeting($variables) {
 
   return $suggestions;
 }
+
+/**
+ * Implements hook_mail().
+ */
+function amdj_message_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'amdj_message_log':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('There is an error on your website');
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
