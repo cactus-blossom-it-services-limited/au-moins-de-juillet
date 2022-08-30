@@ -34,7 +34,7 @@ class MailLogger implements LoggerInterface
    * The message parser.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    */
-  public function __construct(LogMessageParserInterface $parser, ConfigFactoryInterface $config_factory) {
+  public function __construct(ConfigFactoryInterface $config_factory) {
     $this->parser = $parser;
     $this->configFactory = $config_factory;
   }
