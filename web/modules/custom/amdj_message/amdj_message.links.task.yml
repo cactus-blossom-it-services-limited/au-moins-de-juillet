@@ -1,0 +1,9 @@
+amdj_message.page:
+  route_name: amdj_message.message
+  title: 'Amdj Greeting'
+  base_route: amdj_message.message
+amdj_message.config:
+  route_name: amdj_message.greeting_form
+  title: 'Configuration'
+  base_route: amdj_message.message
+  weight: 100

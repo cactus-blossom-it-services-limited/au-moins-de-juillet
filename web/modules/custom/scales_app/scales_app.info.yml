@@ -1,0 +1,5 @@
+name: Scales App
+description: Use this to practice scales
+type: module
+core_version_requirement: ^9
+package: Custom
