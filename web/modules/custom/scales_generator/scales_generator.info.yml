@@ -1,5 +1,0 @@
-name: Scales Generator
-type: module
-description: "This generates scales to practice"
-core_version_requirement: ^9
-package: Custom

@@ -1,3 +1,0 @@
-services:
-    scales_generator.scales_generator:
-        class: Drupal\scales_generator\ScalesGenerator
